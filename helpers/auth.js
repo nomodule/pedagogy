@@ -4,7 +4,7 @@ module.exports = {
             return next();
         }
 
-        req.flash('error_msg', 'Not Autherized');
+        req.flash('error', 'Not Autherized');
         res.redirect('/users/login');
     },
     ensureNotAuthenticated: function (req, res, next) {

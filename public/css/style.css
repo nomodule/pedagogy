@@ -1,5 +1,5 @@
 .c__add-question {
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 50px;
     width: 50px;
@@ -22,4 +22,10 @@
 .c__add-question a:hover,
 .c__add-question a:focus {
     color: #fff;
+}
+
+.footer {
+    margin-top: 15px;
+    padding: 15px;
+    background: #e9ecef;
 }

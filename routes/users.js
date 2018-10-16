@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const User = require('../models/User');
+const Question = require('../models/Question');
 const bcrypt = require('bcryptjs');
 const {ensureAuthenticated, ensureNotAuthenticated} = require('../helpers/auth');
+const mongoose = require('mongoose');
 
 router.get('/login', ensureNotAuthenticated, (req, res, next) => {
     res.render('users/login');
@@ -72,9 +74,33 @@ router.post('/register', ensureNotAuthenticated, (req, res) => {
                             return;
                         })
                     });
-                })
+                });
             }
         })
+    }
+});
+
+router.get('/profile/:id', (req, res) => {
+    if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+        User.findOne({_id: req.params.id})
+        .then(currentUser => {
+            if (!currentUser) {
+                req.flash('error_msg', 'User not found');
+                res.redirect('/');
+            } else {
+                Question.find({askedBy: currentUser.id})
+                .then(currentUserQuestions => {
+                    res.render('users/profile', {
+                        currentUser: currentUser,
+                        currentUserQuestions: currentUserQuestions
+                    });
+                })
+                .catch(err => console.log(err));
+            }
+        })
+        .catch(err => console.log('Error', err));
+    } else {
+        res.redirect('/');
     }
 });
 

@@ -12,6 +12,7 @@ const app = express();
 const indexRoute = require('./routes/index');
 const usersRoute = require('./routes/users');
 const questionsRoute = require('./routes/questions');
+const answersRoute = require('./routes/answers');
 
 // db
 require('./config/db');
@@ -51,6 +52,7 @@ app.use(function (req, res, next) {
 app.use('/', indexRoute);
 app.use('/users', usersRoute);
 app.use('/questions', questionsRoute);
+app.use('/answers', answersRoute);
 require('./config/passport')(passport);
 
 /*_____________________________________________*/

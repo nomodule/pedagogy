@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {ensureAuthenticated} = require('../helpers/auth');
+const {getSubject} = require('../helpers/questionHbs');
 
 const Question = require('../models/Question');
 
@@ -30,7 +31,17 @@ router.post('/add', ensureAuthenticated, (req, res) => {
             points: req.body.points
         });
     } else {
-        
+        const newQuestion = new Question({
+            question: req.body.question,
+            subject: getSubject(req.body.subject),
+            points: req.body.points,
+            askedBy: req.user.id
+        })
+        .save()
+        .then(question => {
+            req.flash('success_msg', 'Your question added successfuly');
+            res.redirect('/');
+        })
     }
 });
 
