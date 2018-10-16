@@ -3,7 +3,7 @@
         {{#if user}}
         <h1 class="display-4">What do you need to know?</h1>
         {{else}}
-        <h1 class="display-4">QUESTION EVERYTHING<br>ANSWER EVERYTHING</h1>
+        <h1 class="display-4">Answered</h1>
         <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         {{/if}}
@@ -14,15 +14,15 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            {{#each questions}}
+            {{#each answers}}
 
             <div class="card">
                 <div class="card-body">
                     <small>by <b><a href="/users/profile/{{askedBy.id}}">{{askedBy.name}}</a> . {{subject}} . {{points}} pts</b></small>
-                    <p class="lead">{{question}}</p>
-                    <div class="text-right">
-                        <a href="/answers/{{id}}" class="btn btn-primary">Answer</a>
-                    </div>
+                    <h5 >{{question}}</h5>
+                    {{#each answers}}
+                    <p class="lead">{{body}}</p>
+                    {{/each}}
                 </div>
             </div>
             {{/each}}

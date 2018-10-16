@@ -1,0 +1,26 @@
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-4">{{currentUser.name}}</h1>
+        <small>Member since: {{currentUser.date}}</small>
+        <p class="card-text">Please add short description about you here...</p>
+        <a href="/user/edit/{{currentUser.id}}" class="btn btn-primary">Edit Profile</a>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="my-3">Questions Asked</h5>
+            {{#each currentUserQuestions}}
+            <div class="card">
+                <div class="card-body">
+                    <small>by <b><a href="/users/profile/{{askedBy.id}}">{{askedBy.name}}</a> . {{subject}} . {{points}} pts</b></small>
+                    <p class="lead">{{question}}</p>
+                    <div class="text-right">
+                        <a href="/answers/{{id}}" class="btn btn-primary">Answer</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
