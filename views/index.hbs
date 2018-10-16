@@ -19,10 +19,13 @@
             <div class="card">
                 <div class="card-body">
                     <small>by <b><a href="/users/profile/{{askedBy.id}}">{{askedBy.name}}</a> . {{subject}} . {{points}} pts</b></small>
-                    <p class="lead">{{question}}</p>
-                    <div class="text-right">
-                        <a href="/answers/{{id}}" class="btn btn-primary">Answer</a>
-                    </div>
+                    <p class="lead"><a href="/answers/{{id}}" class="fc-default">{{question}}</a></p>
+                    {{#if isAnswered}}
+                        {{else}}
+                        <div class="text-right">
+                            <a href="/answers/{{id}}" class="btn btn-primary">Answer</a>
+                        </div>
+                    {{/if}}
                 </div>
             </div>
             {{/each}}

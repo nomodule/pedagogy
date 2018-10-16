@@ -26,7 +26,7 @@ const QuestionSchema = new Schema({
     answers: [{
         answeredBy: {
             type: Schema.Types.ObjectId,
-            require: true
+            ref: 'users'
         },
         body: {
             type: String,

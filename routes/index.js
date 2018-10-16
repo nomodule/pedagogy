@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
             res.render('index');
         } else {
             res.render('index', {
-                questions: questions
+                questions: questions,
             });
         }
     })

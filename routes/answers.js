@@ -5,9 +5,10 @@ const Question = require('../models/Question');
 
 router.get('/:id', ensureAuthenticated, (req, res) => {
     Question.findOne({_id: req.params.id})
+    .populate('answers.answeredBy')
     .then(question => {
         res.render('answers/add', {
-            question: question
+            question: question,
         });
     })
     .catch(err => console.log('error while fetching question...', err));

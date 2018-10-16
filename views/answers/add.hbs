@@ -13,6 +13,14 @@
                         </form>
                     </div>
                 </div>
+                {{#each question.answers}}
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <small class="card-title">Answer by <b>{{answeredBy.name}}</b></small>
+                        <p class="lead">{{body}}</p>
+                    </div>
+                </div>
+                {{/each}}
             </div>
         </div>
     </div>
